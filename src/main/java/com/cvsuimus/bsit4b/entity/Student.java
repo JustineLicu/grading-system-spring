@@ -1,0 +1,42 @@
+package com.cvsuimus.bsit4b.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@Entity
+@Table
+public class Student {
+
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  @Column(nullable = false, unique = true)
+  private String studentNumber;
+
+  @Column(nullable = false)
+  private String firstName;
+
+  @Column(nullable = false)
+  private String middleName = "";
+
+  @Column(nullable = false)
+  private String lastName;
+
+  @Column(nullable = false)
+  private String nameSuffix = "";
+
+  @Column(nullable = false, unique = true)
+  private String email;
+
+  @Column(nullable = false)
+  private String contactNumber = "";
+
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "course_id", nullable = false)
+  private Course course;
+
+  @Column(name = "course_id", insertable = false, updatable = false)
+  private Long courseId;
+}
