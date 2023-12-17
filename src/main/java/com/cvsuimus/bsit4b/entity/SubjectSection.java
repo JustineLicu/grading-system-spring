@@ -1,9 +1,11 @@
 package com.cvsuimus.bsit4b.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "subject_id", "section_id", "deleted_on" }))
 public class SubjectSection {
