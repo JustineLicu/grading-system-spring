@@ -1,5 +1,7 @@
 package com.cvsuimus.bsit4b.entity;
 
+import com.cvsuimus.bsit4b.dto.auth.*;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -64,4 +66,14 @@ public class User {
 
   // @Column(name = "role_name", insertable = false, updatable = false)
   // private String roleName;
+
+  public User() {
+  }
+
+  public User(SignUpUserDto user) {
+    idNumber = user.getIdNumber();
+    email = user.getEmail();
+    username = user.getUsername();
+    password = user.getPassword();
+  }
 }
