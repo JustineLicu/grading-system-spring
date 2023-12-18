@@ -51,7 +51,7 @@ public class DepartmentService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      Department savedItem = departmentRepository.persistAndFlush(new Department(item));
+      Department savedItem = departmentRepository.persist(new Department(item));
       return new ResponseEntity<>(new ResponseDto<>(savedItem, null), HttpStatus.CREATED);
     } catch (Exception e) {
       List<ErrorDto> errors = new ArrayList<ErrorDto>();
@@ -68,7 +68,7 @@ public class DepartmentService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      Department updatedItem = departmentRepository.updateAndFlush(new Department(id, item));
+      Department updatedItem = departmentRepository.update(new Department(id, item));
       return new ResponseEntity<>(new ResponseDto<>(updatedItem, null), HttpStatus.OK);
     } catch (Exception e) {
       List<ErrorDto> errors = new ArrayList<ErrorDto>();

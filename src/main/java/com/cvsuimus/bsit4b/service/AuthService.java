@@ -28,7 +28,7 @@ public class AuthService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      User savedItem = userRepository.persistAndFlush(new User(item));
+      User savedItem = userRepository.persist(new User(item));
       return new ResponseEntity<>(new ResponseDto<>(savedItem, null), HttpStatus.CREATED);
     } catch (Exception e) {
       List<ErrorDto> errors = new ArrayList<ErrorDto>();
