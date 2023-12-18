@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class ResponseDto<T> {
+
   private Boolean success;
   private T data;
   private List<ErrorDto> errors;

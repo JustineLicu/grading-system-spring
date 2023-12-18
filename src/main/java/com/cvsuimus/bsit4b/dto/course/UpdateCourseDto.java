@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class UpdateCourseDto {
+
   @NotBlank
   @Size(max = 60)
   private String acronym;
