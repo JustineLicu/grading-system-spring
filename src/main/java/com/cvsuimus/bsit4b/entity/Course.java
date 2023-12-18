@@ -1,5 +1,7 @@
 package com.cvsuimus.bsit4b.entity;
 
+import com.cvsuimus.bsit4b.dto.course.*;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -22,4 +24,20 @@ public class Course {
 
   @Column(nullable = false)
   private String description = "";
+
+  public Course() {
+  }
+
+  public Course(CreateCourseDto course) {
+    acronym = course.getAcronym();
+    name = course.getName();
+    description = course.getDescription() != null ? course.getDescription() : description;
+  }
+
+  public Course(Long id, UpdateCourseDto course) {
+    this.id = id;
+    acronym = course.getAcronym();
+    name = course.getName();
+    description = course.getDescription();
+  }
 }
