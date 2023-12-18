@@ -51,7 +51,7 @@ public class CourseService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      Course savedItem = courseRepository.persist(new Course(item));
+      Course savedItem = courseRepository.persistAndFlush(new Course(item));
       return new ResponseEntity<>(new ResponseDto<>(savedItem, null), HttpStatus.CREATED);
     } catch (Exception e) {
       List<ErrorDto> errors = new ArrayList<ErrorDto>();
@@ -67,7 +67,7 @@ public class CourseService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      Course updatedItem = courseRepository.update(new Course(id, item));
+      Course updatedItem = courseRepository.updateAndFlush(new Course(id, item));
       return new ResponseEntity<>(new ResponseDto<>(updatedItem, null), HttpStatus.OK);
     } catch (Exception e) {
       List<ErrorDto> errors = new ArrayList<ErrorDto>();
