@@ -1,6 +1,7 @@
 package com.cvsuimus.bsit4b.entity;
 
 import com.cvsuimus.bsit4b.dto.auth.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,6 +13,7 @@ import lombok.experimental.Accessors;
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "id_number", "deleted_on" }),
     @UniqueConstraint(columnNames = { "email", "deleted_on" }),
     @UniqueConstraint(columnNames = { "username", "deleted_on" }) })
+@JsonIgnoreProperties({ "password", "hibernateLazyInitializer" })
 public class User {
   @Id
   @GeneratedValue

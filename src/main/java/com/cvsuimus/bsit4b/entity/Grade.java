@@ -1,5 +1,7 @@
 package com.cvsuimus.bsit4b.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -8,6 +10,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "subject_section_id", "student_id", "deleted_on" }))
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Grade {
 
   @Id

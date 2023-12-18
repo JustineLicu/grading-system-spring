@@ -1,6 +1,7 @@
 package com.cvsuimus.bsit4b.entity;
 
 import com.cvsuimus.bsit4b.dto.course.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,6 +11,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table(indexes = @Index(name = "acronym_index", columnList = "acronym"))
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Course {
 
   @Id
