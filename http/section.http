@@ -1,0 +1,41 @@
+@host = http://localhost:8080
+@sectionId = 1
+
+# `/sections` ENDPOINTS
+
+# Get all sections
+GET {{host}}/sections
+
+###
+
+# Get one section
+GET {{host}}/sections/{{sectionId}}
+
+###
+
+# Create a section
+POST {{host}}/sections
+Content-Type: application/json
+
+{
+  "year": 4,
+  "name": "B",
+  "courseId": 1
+}
+
+###
+
+# Update a section
+PUT {{host}}/sections/{{sectionId}}
+Content-Type: application/json
+
+{
+  "year": 4,
+  "name": "C",
+  "courseId": 1
+}
+
+###
+
+# Delete a section (Can't delete if there are connected SubjectSections to it)
+DELETE {{host}}/sections/{{sectionId}}

@@ -1,6 +1,6 @@
 @host = http://localhost:8080
-@subjectId = 1
 @subjectSectionId = 1
+@subjectId = 1
 
 # `/subjects/{{subjectId}}/sections` ENDPOINTS
 

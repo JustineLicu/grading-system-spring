@@ -24,7 +24,7 @@ POST {{host}}/users/{{userId}}/subjects
 Content-Type: application/json
 
 {
-  "code": "1-60 chars",
+  "code": "1-60 chars, unique for each user",
   "description": "1-150 chars"
 }
 

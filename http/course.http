@@ -1,0 +1,41 @@
+@host = http://localhost:8080
+@courseId = 1
+
+# `/courses` ENDPOINTS
+
+# Get all courses
+GET {{host}}/courses
+
+###
+
+# Get one course
+GET {{host}}/courses/{{courseId}}
+
+###
+
+# Create a course
+POST {{host}}/courses
+Content-Type: application/json
+
+{
+  "acronym": "1-60 chars, unique",
+  "name": "1-60 chars",
+  "description": "150 max chars"
+}
+
+###
+
+# Update a course
+PUT {{host}}/courses/{{courseId}}
+Content-Type: application/json
+
+{
+  "acronym": "BSIT",
+  "name": "Bachelor of Science in Information Technology",
+  "description": "Lorem ipsum dolor"
+}
+
+###
+
+# Delete a course (Can't delete if there are connected Sections to it)
+DELETE {{host}}/courses/{{courseId}}
