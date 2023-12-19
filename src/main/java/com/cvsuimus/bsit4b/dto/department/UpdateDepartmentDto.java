@@ -9,7 +9,7 @@ public class UpdateDepartmentDto {
   @Size(max = 60)
   private String name;
 
-  @NotBlank
+  @NotNull
   @Size(max = 150)
   private String description;
 }
