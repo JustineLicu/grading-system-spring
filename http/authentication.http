@@ -1,0 +1,46 @@
+@host = http://localhost:8080
+@userId = 1
+
+# `/auth` ENDPOINTS
+
+# Sign up
+POST {{host}}/auth/sign-up
+Content-Type: application/json
+
+{
+  "idNumber": "String talaga to, 1-60 characters tapos unique",
+  "email": "150 max chars, unique din",
+  "username": "4-60 chars, unique",
+  "password": "8-150 chars"
+}
+
+###
+
+# Sign in
+POST {{host}}/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "4-60 chars",
+  "password": "8-150 chars"
+}
+
+###
+
+# Get one user info
+GET /users/{{userId}}
+
+###
+
+# Sign out (Delete mo local storage data or cookies)
+DELETE /auth/sign-out
+
+###
+
+# Edit Profile
+PUT /users/{{userId}}
+Content-Type: application/json
+
+{
+  
+}

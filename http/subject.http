@@ -1,0 +1,45 @@
+@host = http://localhost:8080
+@subjectId = 1
+@userId = 1
+
+# `/users/{{userId}}/subjects` ENDPOINTS
+
+# Get all subjects of a particular user
+GET {{host}}/users/{{userId}}/subjects
+
+###
+
+# Get all archived subjects of a particular user
+GET {{host}}/users/{{userId}}/subjects/archived
+
+###
+
+# Get one subject of a particular user
+GET {{host}}/users/{{userId}}/subjects/{{subjectId}}
+
+###
+
+# Create a subject for a particular user
+POST {{host}}/users/{{userId}}/subjects
+Content-Type: application/json
+
+{
+  "code": "1-60 chars",
+  "description": "1-150 chars"
+}
+
+###
+
+# Update a subject of a particular user
+PUT {{host}}/users/{{userId}}/subjects/{{subjectId}}
+Content-Type: application/json
+
+{
+  "code": "ITEC_116",
+  "description": "Lorem ipsum dolor"
+}
+
+###
+
+# Archive a subject of a particular user
+DELETE {{host}}/users/{{userId}}/subjects/{{subjectId}}
