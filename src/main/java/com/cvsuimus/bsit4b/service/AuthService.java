@@ -28,10 +28,10 @@ public class AuthService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      List<User> existingItemOptional = userRepository.findByIdNumberOrEmailOrUsername(item.getIdNumber(),
+      List<User> existingItems = userRepository.findByIdNumberOrEmailOrUsername(item.getIdNumber(),
           item.getEmail(), item.getUsername());
 
-      if (!existingItemOptional.isEmpty()) {
+      if (!existingItems.isEmpty()) {
         List<ErrorDto> errors = new ArrayList<ErrorDto>();
         errors.add(new ErrorDto("account", "Account is already registered"));
         return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
