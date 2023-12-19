@@ -14,7 +14,7 @@ public class UpdateCourseDto {
   @Size(max = 60)
   private String name;
 
-  @NotBlank
+  @NotNull
   @Size(max = 150)
   private String description;
 }

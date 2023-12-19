@@ -51,13 +51,18 @@ public class CourseService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
+      Optional<Course> existingItemOptional = courseRepository.findByAcronym(item.getAcronym());
+
+      if (existingItemOptional.isPresent()) {
+        List<ErrorDto> errors = new ArrayList<ErrorDto>();
+        errors.add(new ErrorDto("acronym", "Acronym is already in use"));
+        return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      }
+
       Course savedItem = courseRepository.persist(new Course(item));
       return new ResponseEntity<>(new ResponseDto<>(savedItem, null), HttpStatus.CREATED);
     } catch (Exception e) {
-      List<ErrorDto> errors = new ArrayList<ErrorDto>();
-      errors.add(new ErrorDto("acronym", "Acronym is already in use"));
-
-      return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
     }
   }
 
@@ -67,13 +72,18 @@ public class CourseService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
+      Optional<Course> existingItemOptional = courseRepository.findByAcronymAndIdNot(item.getAcronym(), id);
+
+      if (existingItemOptional.isPresent()) {
+        List<ErrorDto> errors = new ArrayList<ErrorDto>();
+        errors.add(new ErrorDto("acronym", "Acronym is already in use"));
+        return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      }
+
       Course updatedItem = courseRepository.update(new Course(id, item));
       return new ResponseEntity<>(new ResponseDto<>(updatedItem, null), HttpStatus.OK);
     } catch (Exception e) {
-      List<ErrorDto> errors = new ArrayList<ErrorDto>();
-      errors.add(new ErrorDto("acronym", "Acronym is already in use"));
-
-      return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
     }
   }
 
