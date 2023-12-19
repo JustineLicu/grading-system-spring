@@ -10,7 +10,7 @@ public class SignInUserDto {
   @Size(min = 4, max = 60)
   private String username;
 
-  @NotBlank
+  @NotNull
   @Size(min = 8, max = 150)
   private String password;
 }
