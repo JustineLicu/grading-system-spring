@@ -20,23 +20,23 @@ public class Grade {
   @Column(name = "deleted_on", nullable = false)
   private String deletedOn = "";
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "longtext")
   private String gradeRows = "[]";
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "longtext")
   private String attendances = "[]";
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "subject_section_id", nullable = false)
   private SubjectSection subjectSection;
 
-  @Column(name = "subject_section_id", insertable = false, updatable = false)
+  @Column(name = "subject_section_id", nullable = false, insertable = false, updatable = false)
   private Long subjectSectionId;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "student_id", nullable = false)
   private Student student;
 
-  @Column(name = "student_id", insertable = false, updatable = false)
+  @Column(name = "student_id", nullable = false, insertable = false, updatable = false)
   private Long studentId;
 }

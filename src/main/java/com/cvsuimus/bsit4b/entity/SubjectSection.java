@@ -20,20 +20,20 @@ public class SubjectSection {
   @Column(name = "deleted_on", nullable = false)
   private String deletedOn = "";
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "longtext")
   private String gradeColumns = "[]";
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "subject_id", nullable = false)
   private Subject subject;
 
-  @Column(name = "subject_id", insertable = false, updatable = false)
+  @Column(name = "subject_id", nullable = false, insertable = false, updatable = false)
   private Long subjectId;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "section_id", nullable = false)
   private Course section;
 
-  @Column(name = "section_id", insertable = false, updatable = false)
+  @Column(name = "section_id", nullable = false, insertable = false, updatable = false)
   private Long sectionId;
 }

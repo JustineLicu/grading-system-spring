@@ -66,7 +66,8 @@ public class User {
   // @JoinColumn(name = "role_name", nullable = false)
   // private Role role;
 
-  // @Column(name = "role_name", insertable = false, updatable = false)
+  // @Column(name = "role_name", nullable = false, insertable = false, updatable =
+  // false)
   // private String roleName;
 
   public User() {
