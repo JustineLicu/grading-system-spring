@@ -1,4 +1,4 @@
-package com.cvsuimus.bsit4b.util;
+package com.cvsuimus.bsit4b.utility;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

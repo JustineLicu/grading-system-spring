@@ -16,7 +16,7 @@ import com.cvsuimus.bsit4b.entity.Subject;
 import com.cvsuimus.bsit4b.entity.User;
 import com.cvsuimus.bsit4b.repository.SubjectRepository;
 import com.cvsuimus.bsit4b.repository.UserRepository;
-import com.cvsuimus.bsit4b.util.MainUtility;
+import com.cvsuimus.bsit4b.utility.MainUtility;
 
 import jakarta.transaction.Transactional;
 
