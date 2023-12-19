@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class UpdateRoleDto {
-  @NotBlank
+  @NotNull
   @Size(max = 150)
   private String description;
 }

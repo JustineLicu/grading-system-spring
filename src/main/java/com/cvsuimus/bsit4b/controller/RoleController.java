@@ -27,9 +27,9 @@ public class RoleController {
     return roleService.getAll();
   }
 
-  @GetMapping("{name}")
-  public ResponseEntity<ResponseDto<Role>> getByName(@PathVariable("name") String name) {
-    return roleService.getById(name);
+  @GetMapping("{id}")
+  public ResponseEntity<ResponseDto<Role>> getById(@PathVariable("id") String id) {
+    return roleService.getById(id);
   }
 
   @PostMapping
@@ -38,15 +38,15 @@ public class RoleController {
     return roleService.create(item, bindingResult);
   }
 
-  @PutMapping("{name}")
-  public ResponseEntity<ResponseDto<Role>> update(@PathVariable("name") String name,
+  @PutMapping("{id}")
+  public ResponseEntity<ResponseDto<Role>> update(@PathVariable("id") String id,
       @Valid @RequestBody UpdateRoleDto item,
       BindingResult bindingResult) {
-    return roleService.update(name, item, bindingResult);
+    return roleService.update(id, item, bindingResult);
   }
 
-  @DeleteMapping("{name}")
-  public ResponseEntity<HttpStatus> delete(@PathVariable("name") String name) {
-    return roleService.delete(name);
+  @DeleteMapping("{id}")
+  public ResponseEntity<HttpStatus> delete(@PathVariable("id") String id) {
+    return roleService.delete(id);
   }
 }
