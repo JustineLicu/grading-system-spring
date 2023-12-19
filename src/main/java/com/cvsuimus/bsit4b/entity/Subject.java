@@ -1,5 +1,6 @@
 package com.cvsuimus.bsit4b.entity;
 
+import com.cvsuimus.bsit4b.dto.subject.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -10,7 +11,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code", "user_id", "deleted_on" }))
-@JsonIgnoreProperties({ "hibernateLazyInitializer" })
+@JsonIgnoreProperties({ "user", "hibernateLazyInitializer" })
 public class Subject {
 
   @Id
@@ -32,4 +33,20 @@ public class Subject {
 
   @Column(name = "user_id", nullable = false, insertable = false, updatable = false)
   private Long userId;
+
+  public Subject() {
+  }
+
+  public Subject(CreateSubjectDto subject, User user) {
+    code = subject.getCode();
+    description = subject.getDescription();
+    this.user = user;
+  }
+
+  public Subject(Long id, UpdateSubjectDto subject, User user) {
+    this.id = id;
+    code = subject.getCode();
+    description = subject.getDescription();
+    this.user = user;
+  }
 }
