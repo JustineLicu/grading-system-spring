@@ -7,7 +7,7 @@ import lombok.Data;
 public class CreateSectionDto {
 
   @NotNull
-  @Max(15)
+  @Max(11)
   private Integer year;
 
   @NotBlank

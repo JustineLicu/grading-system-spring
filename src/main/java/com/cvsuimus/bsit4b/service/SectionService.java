@@ -56,15 +56,21 @@ public class SectionService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
+      Optional<Section> existingItemOptional = sectionRepository.findByYearAndNameAndCourseId(item.getYear(),
+          item.getName(), item.getCourseId());
+
+      if (existingItemOptional.isPresent()) {
+        List<ErrorDto> errors = new ArrayList<ErrorDto>();
+        errors.add(new ErrorDto("section", "Section already exist"));
+        return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      }
+
       Course course = courseRepository.getReferenceById(item.getCourseId());
       Section savedItem = sectionRepository.persist(new Section(item, course));
       return new ResponseEntity<>(new ResponseDto<>(savedItem.setCourseId(item.getCourseId()), null),
           HttpStatus.CREATED);
     } catch (Exception e) {
-      List<ErrorDto> errors = new ArrayList<ErrorDto>();
-      errors.add(new ErrorDto("section", "Section is already created"));
-
-      return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
     }
   }
 
@@ -74,14 +80,20 @@ public class SectionService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
+      Optional<Section> existingItemOptional = sectionRepository.findByYearAndNameAndCourseIdAndIdNot(item.getYear(),
+          item.getName(), item.getCourseId(), id);
+
+      if (existingItemOptional.isPresent()) {
+        List<ErrorDto> errors = new ArrayList<ErrorDto>();
+        errors.add(new ErrorDto("section", "Section already exist"));
+        return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      }
+
       Course course = courseRepository.getReferenceById(item.getCourseId());
       Section updatedItem = sectionRepository.update(new Section(id, item, course));
       return new ResponseEntity<>(new ResponseDto<>(updatedItem.setCourseId(item.getCourseId()), null), HttpStatus.OK);
     } catch (Exception e) {
-      List<ErrorDto> errors = new ArrayList<ErrorDto>();
-      errors.add(new ErrorDto("section", "Section is already created"));
-
-      return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
     }
   }
 
