@@ -16,15 +16,20 @@ import com.cvsuimus.bsit4b.service.SubjectSectionService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/subjectSections")
+@RequestMapping("/subjects/{subjectId}/sections")
 public class SubjectSectionController {
 
   @Autowired
   private SubjectSectionService subjectSectionService;
 
   @GetMapping
-  public ResponseEntity<ResponseDto<List<SubjectSection>>> getAll() {
-    return subjectSectionService.getAll();
+  public ResponseEntity<ResponseDto<List<SubjectSection>>> getAll(@PathVariable("subjectId") Long subjectId) {
+    return subjectSectionService.getAll(subjectId);
+  }
+
+  @GetMapping("archived")
+  public ResponseEntity<ResponseDto<List<SubjectSection>>> getAllArchived(@PathVariable("subjectId") Long subjectId) {
+    return subjectSectionService.getAllArchived(subjectId);
   }
 
   @GetMapping("{id}")
@@ -33,16 +38,16 @@ public class SubjectSectionController {
   }
 
   @PostMapping
-  public ResponseEntity<ResponseDto<SubjectSection>> create(@Valid @RequestBody CreateSubjectSectionDto item,
+  public ResponseEntity<ResponseDto<SubjectSection>> create(@PathVariable("subjectId") Long subjectId,
+      @Valid @RequestBody CreateSubjectSectionDto item,
       BindingResult bindingResult) {
-    return subjectSectionService.create(item, bindingResult);
+    return subjectSectionService.create(subjectId, item, bindingResult);
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<ResponseDto<SubjectSection>> update(@PathVariable("id") Long id,
-      @Valid @RequestBody UpdateSubjectSectionDto item,
-      BindingResult bindingResult) {
-    return subjectSectionService.update(id, item, bindingResult);
+  public ResponseEntity<ResponseDto<SubjectSection>> update(@PathVariable("subjectId") Long subjectId,
+      @PathVariable("id") Long id, @Valid @RequestBody UpdateSubjectSectionDto item, BindingResult bindingResult) {
+    return subjectSectionService.update(subjectId, id, item, bindingResult);
   }
 
   @DeleteMapping("{id}")
