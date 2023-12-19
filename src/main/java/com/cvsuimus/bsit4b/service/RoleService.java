@@ -55,7 +55,7 @@ public class RoleService {
 
       if (existingItemOptional.isPresent()) {
         List<ErrorDto> errors = new ArrayList<ErrorDto>();
-        errors.add(new ErrorDto("name", "Role already exist"));
+        errors.add(new ErrorDto("name", "Name is already in use"));
         return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
       }
 
