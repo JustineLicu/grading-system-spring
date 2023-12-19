@@ -50,7 +50,7 @@ public class User {
   private Boolean isActive = false;
 
   @Column(nullable = false)
-  private String role = "instructor";
+  private String roleName = "instructor";
 
   @Column(name = "deleted_on", nullable = false)
   private String deletedOn = "";

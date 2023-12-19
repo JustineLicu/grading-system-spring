@@ -16,10 +16,10 @@ public class SignUpUserDto {
   private String email;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(min = 4, max = 60)
   private String username;
 
   @NotBlank
-  @Size(max = 150)
+  @Size(min = 8, max = 150)
   private String password;
 }

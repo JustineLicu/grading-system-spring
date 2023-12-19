@@ -28,13 +28,20 @@ public class AuthService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
+      List<User> existingItemOptional = userRepository.findByIdNumberOrEmailOrUsername(item.getIdNumber(),
+          item.getEmail(), item.getUsername());
+
+      if (!existingItemOptional.isEmpty()) {
+        List<ErrorDto> errors = new ArrayList<ErrorDto>();
+        errors.add(new ErrorDto("account", "Account is already registered"));
+        return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      }
+
+      // TODO: password hashing
       User savedItem = userRepository.persist(new User(item));
       return new ResponseEntity<>(new ResponseDto<>(savedItem, null), HttpStatus.CREATED);
     } catch (Exception e) {
-      List<ErrorDto> errors = new ArrayList<ErrorDto>();
-      errors.add(new ErrorDto("account", "Account is already registered"));
-
-      return new ResponseEntity<>(new ResponseDto<>(null, errors), HttpStatus.EXPECTATION_FAILED);
+      return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
     }
   }
 }
