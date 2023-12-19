@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "id_number", "deleted_on" }),
     @UniqueConstraint(columnNames = { "email", "deleted_on" }),
     @UniqueConstraint(columnNames = { "username", "deleted_on" }) })
-@JsonIgnoreProperties({ "password", "hibernateLazyInitializer" })
+@JsonIgnoreProperties({ "password", "department", "hibernateLazyInitializer" })
 public class User {
   @Id
   @GeneratedValue

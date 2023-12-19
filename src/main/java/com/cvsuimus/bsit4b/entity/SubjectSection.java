@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "subject_id", "section_id", "deleted_on" }))
-@JsonIgnoreProperties({ "subject", "section", "hibernateLazyInitializer" })
+@JsonIgnoreProperties({ "subject", "hibernateLazyInitializer" })
 public class SubjectSection {
 
   @Id

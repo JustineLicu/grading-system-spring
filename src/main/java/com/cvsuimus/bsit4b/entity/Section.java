@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "year", "name",
     "course_id" }), indexes = @Index(name = "ync_index", columnList = "year, name, course_id"))
-@JsonIgnoreProperties({ "hibernateLazyInitializer" })
+@JsonIgnoreProperties({ "course", "hibernateLazyInitializer" })
 public class Section {
 
   @Id
