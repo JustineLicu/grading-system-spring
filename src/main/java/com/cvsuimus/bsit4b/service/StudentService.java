@@ -56,10 +56,10 @@ public class StudentService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      List<Student> existingItemOptional = studentRepository.findByStudentNumberOrEmail(item.getStudentNumber(),
+      List<Student> existingItems = studentRepository.findByStudentNumberOrEmail(item.getStudentNumber(),
           item.getEmail());
 
-      if (!existingItemOptional.isEmpty()) {
+      if (!existingItems.isEmpty()) {
         List<ErrorDto> errors = new ArrayList<ErrorDto>();
         errors.add(new ErrorDto("studentNumber", "Student Number or Email is already in use"));
         errors.add(new ErrorDto("email", "Email or Student Number is already in use"));
@@ -81,10 +81,10 @@ public class StudentService {
       return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 
     try {
-      List<Student> existingItemOptional = studentRepository.findByStudentNumberOrEmailAndIdNot(item.getStudentNumber(),
+      List<Student> existingItems = studentRepository.findByStudentNumberOrEmailAndIdNot(item.getStudentNumber(),
           item.getEmail(), id);
 
-      if (!existingItemOptional.isEmpty()) {
+      if (!existingItems.isEmpty()) {
         List<ErrorDto> errors = new ArrayList<ErrorDto>();
         errors.add(new ErrorDto("studentNumber", "Student Number or Email is already in use"));
         errors.add(new ErrorDto("email", "Email or Student Number is already in use"));
