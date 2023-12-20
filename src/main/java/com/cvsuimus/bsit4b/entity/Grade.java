@@ -1,5 +1,6 @@
 package com.cvsuimus.bsit4b.entity;
 
+import com.cvsuimus.bsit4b.dto.grade.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -39,4 +40,22 @@ public class Grade {
 
   @Column(name = "student_id", nullable = false, insertable = false, updatable = false)
   private Long studentId;
+
+  public Grade() {
+  }
+
+  public Grade(CreateGradeDto grade, SubjectSection subjectSection, Student student) {
+    gradeRows = grade.getGradeRows() != null ? grade.getGradeRows() : gradeRows;
+    attendances = grade.getAttendances() != null ? grade.getAttendances() : attendances;
+    this.subjectSection = subjectSection;
+    this.student = student;
+  }
+
+  public Grade(Long id, UpdateGradeDto grade, SubjectSection subjectSection, Student student) {
+    this.id = id;
+    gradeRows = grade.getGradeRows() != null ? grade.getGradeRows() : gradeRows;
+    attendances = grade.getAttendances() != null ? grade.getAttendances() : attendances;
+    this.subjectSection = subjectSection;
+    this.student = student;
+  }
 }

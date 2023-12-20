@@ -5,19 +5,13 @@ import lombok.Data;
 
 @Data
 public class UpdateGradeDto {
-  @NotBlank
-  @Size(max = 60)
-  private String deletedOn;
 
   @NotBlank
-  private String gradeRows;
+  private String gradeRows = "[]";
 
   @NotBlank
-  private String attendances;
+  private String attendances = "[]";
 
   @NotNull
-  private Long subjectSectionId;
-
-  @NotNull
-  private Long stundentId;
+  private Long studentId;
 }
