@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class CreateUserDto {
+
   @NotBlank
   @Size(max = 60)
   private String idNumber;
@@ -13,7 +14,6 @@ public class CreateUserDto {
   @Size(max = 60)
   private String firstName;
 
-  @NotBlank
   @Size(max = 60)
   private String middleName;
 
@@ -21,32 +21,28 @@ public class CreateUserDto {
   @Size(max = 60)
   private String lastName;
 
-  @Size(max = 20)
+  @Size(max = 60)
   private String nameSuffix;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(max = 150)
   private String email;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(min = 4, max = 60)
   private String username;
 
-  @NotBlank
-  @Size(max = 60)
+  @NotNull
+  @Size(min = 8, max = 150)
   private String password;
 
-  @NotBlank
-  @Size(max = 60)
+  @Size(max = 30)
   private String contactNumber;
 
-  @NotBlank
-  @Size(max = 60)
-  private String role;
+  private Boolean isActive;
 
-  @NotBlank
-  @Size(max = 60)
-  private String deletedOn;
+  @Size(min = 1, max = 60)
+  private String roleName;
 
   @NotNull
   private Long departmentId;

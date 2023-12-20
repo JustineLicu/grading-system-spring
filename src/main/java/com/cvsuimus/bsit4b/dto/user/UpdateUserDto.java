@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class UpdateUserDto {
+
   @NotBlank
   @Size(max = 60)
   private String idNumber;
@@ -13,7 +14,7 @@ public class UpdateUserDto {
   @Size(max = 60)
   private String firstName;
 
-  @NotBlank
+  @NotNull
   @Size(max = 60)
   private String middleName;
 
@@ -21,34 +22,29 @@ public class UpdateUserDto {
   @Size(max = 60)
   private String lastName;
 
-  @NotBlank
-  @Size(max = 20)
+  @NotNull
+  @Size(max = 60)
   private String nameSuffix;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(max = 150)
   private String email;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(min = 4, max = 60)
   private String username;
 
-  @NotBlank
-  @Size(max = 60)
-  private String password;
-
-  @NotBlank
-  @Size(max = 60)
+  @NotNull
+  @Size(max = 30)
   private String contactNumber;
 
-  @NotBlank
-  @Size(max = 60)
-  private String role;
+  // @NotNull
+  private Boolean isActive = true;
 
-  @NotBlank
+  // @NotBlank
   @Size(max = 60)
-  private String deletedOn;
+  private String roleName = "instructor";
 
-  @NotNull
-  private Long departmentId;
+  // @NotNull
+  private Long departmentId = null;
 }

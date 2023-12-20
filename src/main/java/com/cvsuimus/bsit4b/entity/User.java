@@ -1,6 +1,7 @@
 package com.cvsuimus.bsit4b.entity;
 
 import com.cvsuimus.bsit4b.dto.auth.*;
+import com.cvsuimus.bsit4b.dto.user.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -78,5 +79,36 @@ public class User {
     email = user.getEmail();
     username = user.getUsername();
     password = user.getPassword();
+    isActive = true;
+  }
+
+  public User(CreateUserDto user, Department department) {
+    idNumber = user.getIdNumber();
+    firstName = user.getFirstName();
+    middleName = user.getMiddleName() != null ? user.getMiddleName() : middleName;
+    lastName = user.getLastName();
+    nameSuffix = user.getNameSuffix() != null ? user.getNameSuffix() : nameSuffix;
+    email = user.getEmail();
+    username = user.getUsername();
+    password = user.getPassword();
+    contactNumber = user.getContactNumber() != null ? user.getContactNumber() : contactNumber;
+    isActive = user.getIsActive() != null ? user.getIsActive() : isActive;
+    roleName = user.getRoleName() != null ? user.getRoleName() : roleName;
+    this.department = department;
+  }
+
+  public User(Long id, UpdateUserDto user, Department department) {
+    this.id = id;
+    idNumber = user.getIdNumber();
+    firstName = user.getFirstName();
+    middleName = user.getMiddleName();
+    lastName = user.getLastName();
+    nameSuffix = user.getNameSuffix();
+    email = user.getEmail();
+    username = user.getUsername();
+    contactNumber = user.getContactNumber();
+    isActive = user.getIsActive();
+    roleName = user.getRoleName();
+    this.department = department;
   }
 }

@@ -28,19 +28,31 @@ Content-Type: application/json
 ###
 
 # Get one user info
-GET /users/{{userId}}
+GET {{host}}/users/{{userId}}
 
 ###
 
 # Sign out (Delete mo local storage data or cookies)
-DELETE /auth/sign-out
+DELETE {{host}}/auth/sign-out
 
 ###
 
 # Edit Profile
-PUT /users/{{userId}}
+PUT {{host}}/users/{{userId}}
 Content-Type: application/json
 
 {
-  
+  "idNumber": "202010801",
+  "firstName": "Juan",
+  "middleName": "",
+  "lastName": "Dela Cruz",
+  "nameSuffix": "IV",
+  "email": "juan.delacruziv@cvsu.edu.ph",
+  "username": "juandelacruz",
+  "contactNumber": "09223456789"
 }
+
+###
+
+# Get all users
+GET {{host}}/users
