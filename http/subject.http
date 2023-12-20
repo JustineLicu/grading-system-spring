@@ -35,7 +35,7 @@ PUT {{host}}/users/{{userId}}/subjects/{{subjectId}}
 Content-Type: application/json
 
 {
-  "code": "ITEC_116",
+  "code": "ITEC 116",
   "description": "Lorem ipsum dolor"
 }
 

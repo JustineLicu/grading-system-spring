@@ -5,15 +5,15 @@ import lombok.Data;
 
 @Data
 public class CreateStudentDto {
+
   @NotBlank
-  @Size(max = 9)
+  @Size(max = 60)
   private String studentNumber;
 
   @NotBlank
   @Size(max = 60)
   private String firstName;
 
-  @NotBlank
   @Size(max = 60)
   private String middleName;
 
@@ -21,15 +21,15 @@ public class CreateStudentDto {
   @Size(max = 60)
   private String lastName;
 
-  @Size(max = 20)
+  @Size(max = 60)
   private String nameSuffix;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(max = 150)
+  @Email
   private String email;
 
-  @NotBlank
-  @Size(max = 60)
+  @Size(max = 30)
   private String contactNumber;
 
   @NotNull
