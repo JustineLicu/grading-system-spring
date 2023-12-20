@@ -4,10 +4,13 @@ A grading system with decision support for CvSU Imus.
 
 ## Usage
 
-> TIP: Run this in VSCode for `REST Client` extension.
+> ALERT: Spring Boot needs `Java JDK 17` in order to run. If your JDK version is different, you can
+> download it here: <https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-17>
 
 Step 0: After cloning this repo, install the required extensions for VSCode by searching
 `@recommended` in the Extensions tab.
+
+> TIP: Run this in VSCode for `REST Client` extension.
 
 Step 1: Copy the `example.application.properties` file to `application.properties` (Run the command
 below for instant copy).
