@@ -20,8 +20,19 @@ public class AuthController {
   private AuthService authService;
 
   @PostMapping("sign-up")
-  public ResponseEntity<ResponseDto<User>> create(@Valid @RequestBody SignUpUserDto item,
+  public ResponseEntity<ResponseDto<User>> signUp(@Valid @RequestBody SignUpUserDto item,
       BindingResult bindingResult) {
     return authService.signUp(item, bindingResult);
+  }
+
+  @PostMapping("sign-in")
+  public ResponseEntity<ResponseDto<User>> signIn(@Valid @RequestBody SignInUserDto item,
+      BindingResult bindingResult) {
+    return authService.signIn(item, bindingResult);
+  }
+
+  @DeleteMapping("sign-out")
+  public ResponseEntity<ResponseDto<String>> signOut() {
+    return authService.signOut();
   }
 }

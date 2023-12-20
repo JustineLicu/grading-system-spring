@@ -21,7 +21,7 @@ POST {{host}}/auth/sign-in
 Content-Type: application/json
 
 {
-  "username": "4-60 chars",
+  "username": "4-60 chars, unique",
   "password": "8-150 chars"
 }
 

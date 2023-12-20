@@ -1,6 +1,7 @@
 package com.cvsuimus.bsit4b.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +17,8 @@ public interface UserRepository extends HibernateRepository<User>, JpaRepository
   List<User> findByDeletedOn(String deletedOn);
 
   List<User> findByDeletedOnNot(String deletedOn);
+
+  Optional<User> findByUsernameAndPassword(String username, String password);
 
   List<User> findByIdNumberOrEmailOrUsername(String idNumber, String email, String username);
 
