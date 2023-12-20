@@ -12,4 +12,10 @@ cp src/main/resources/example.application.properties src/main/resources/applicat
 
 Step 2: Create a MySQL database named `dev_grading_system`.
 
+Step 2.1 (OPTIONAL: Run this if you can't start Spring): Install Maven dependencies.
+
+```sh
+./mvnw install
+```
+
 Step 3: That's it. Start the Spring application, & access it at <http://localhost:8080>
