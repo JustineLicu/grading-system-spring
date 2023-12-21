@@ -1,0 +1,13 @@
+@host = http://localhost:8080
+
+# `/email` ENDPOINTS
+
+# Send email
+POST {{host}}/email
+Content-Type: application/json
+
+{
+  "to": "150 max chars, email address",
+  "subject": "1-60 chars",
+  "text": "1-150 chars"
+}
