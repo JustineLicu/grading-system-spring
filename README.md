@@ -10,7 +10,7 @@ Spring Boot 3 requires `Java 17`. If your version is different, you can download
 > If you are using `VS Code`, install the recommended extensions for this project by searching
 > `@recommended` in the Extensions tab.
 
-**Step 1:** Run the Spring Boot application using your IDE, or by running the command below.
+**Step 1:** Run this Spring Boot application using your IDE, or by running the command below.
 
 ```sh
 ./mvnw spring-boot:run
