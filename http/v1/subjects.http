@@ -1,0 +1,46 @@
+@host = http://localhost:8080/api/v1
+
+# `/subjects` Endpoints
+
+# Get all subjects
+GET {{host}}/subjects
+
+###
+
+# Get all archived subjects
+GET {{host}}/subjects/archived
+
+###
+
+# Get a subject
+# GET {{host}}/subjects/{{subjectId}}
+GET {{host}}/subjects/1
+
+###
+
+# Create a subject
+POST {{host}}/subjects
+Content-Type: application/json
+
+{
+  "code": "ITEC 116",
+  "description": "Lorem ipsum dolor."
+}
+
+###
+
+# Update a subject
+# PUT {{host}}/subjects/{{subjectId}}
+PUT {{host}}/subjects/1
+Content-Type: application/json
+
+{
+  "code": "ITEC 117",
+  "description": "Lorem ipsum dolor sit."
+}
+
+###
+
+# Archive a subject
+# DELETE {{host}}/subjects/{{subjectId}}
+DELETE {{host}}/subjects/1
