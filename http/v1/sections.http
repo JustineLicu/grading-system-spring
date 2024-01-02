@@ -1,0 +1,53 @@
+@host = http://localhost:8080/api/v1
+
+# `/subjects/{{subjectId}}/sections` Endpoints
+
+# Get all sections of the specified subjectId
+# GET {{host}}/subjects/{{subjectId}}/sections
+GET {{host}}/subjects/1/sections
+
+###
+
+# Get all archived sections of the specified subjectId
+# GET {{host}}/subjects/{{subjectId}}/sections/archived
+GET {{host}}/subjects/1/sections/archived
+
+###
+
+# Get specific section of the specified subjectId
+# GET {{host}}/subjects/{{subjectId}}/sections/{{sectionId}}
+GET {{host}}/subjects/1/sections/1
+
+###
+
+# Add a section to the specified subjectId
+# POST {{host}}/subjects/{{subjectId}}/sections
+POST {{host}}/subjects/1/sections
+Content-Type: application/json
+
+{
+  "course": "BSIT",
+  "year": 4,
+  "name": "B",
+  "gradeColumns": "[]"
+}
+
+###
+
+# Edit a section of the specified subjectId
+# PUT {{host}}/subjects/{{subjectId}}/sections/{{sectionId}}
+PUT {{host}}/subjects/1/sections/1
+Content-Type: application/json
+
+{
+  "course": "BSCS",
+  "year": 2,
+  "name": "A",
+  "gradeColumns": "[]"
+}
+
+###
+
+# Archive a section of the specified subjectId
+# DELETE {{host}}/subjects/{{subjectId}}/sections/{{sectionId}}
+DELETE {{host}}/subjects/1/sections/1
