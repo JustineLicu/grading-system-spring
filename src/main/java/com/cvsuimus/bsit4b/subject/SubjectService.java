@@ -83,13 +83,15 @@ public class SubjectService {
       Subject existingItem = existingItemOptional.get();
 
       if (item.getCode() != null && !existingItem.getCode().equals(item.getCode())) {
-        Boolean codeExists = subjectRepository.findByCodeAndUserIdAndDeletedOn(
-            item.getCode(), userId, "").isPresent();
-        if (codeExists) {
-          throw new IllegalStateException("Code is already taken");
-        } else {
-          existingItem.setCode(item.getCode());
+        if (existingItem.getDeletedOn().isEmpty()) {
+          Boolean codeExists = subjectRepository.findByCodeAndUserIdAndDeletedOn(
+              item.getCode(), userId, existingItem.getDeletedOn()).isPresent();
+          if (codeExists) {
+            throw new IllegalStateException("Code is already taken");
+          }
         }
+
+        existingItem.setCode(item.getCode());
       }
 
       if (item.getDescription() != null) {
