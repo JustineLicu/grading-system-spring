@@ -11,3 +11,53 @@ Content-Type: application/json
   "subject": "1-60 chars",
   "text": "1-150 chars"
 }
+
+######
+
+# `/users/{{userId}}/notifications` Endpoints
+
+# Get all notifications of the specified userId
+# GET {{host}}/users/{{userId}}/notifications
+GET {{host}}/users/1/notifications
+
+###
+
+# Get specific notification of the specified userId
+# GET {{host}}/users/{{userId}}/notifications/{{notificationId}}
+GET {{host}}/users/1/notifications/1
+
+###
+
+# Create a notification for the specified userId
+# POST {{host}}/users/{{userId}}/notifications
+POST {{host}}/users/1/notifications
+Content-Type: application/json
+
+{
+  "subjectCode": "ITEC 116",
+  "message": "Lorem ipsum dolor?",
+  "fullName": "Juan Dela Cruz",
+  "email": "juan.delacruz@cvsu.edu.ph",
+  "studentId": 1
+}
+
+###
+
+# Edit a notification of the specified userId
+# PUT {{host}}/users/{{userId}}/notifications/{{notificationId}}
+PUT {{host}}/users/1/notifications/1
+Content-Type: application/json
+
+{
+  "subjectCode": "ITEC 117",
+  "message": "Lorem ipsum dolor sit?",
+  "fullName": "Juan Dela Cruz",
+  "email": "juan.delacruz@cvsu.edu.ph",
+  "studentId": 1
+}
+
+###
+
+# Delete a notification of the specified userId
+# DELETE {{host}}/users/{{userId}}/notifications/{{notificationId}}
+DELETE {{host}}/users/1/notifications/1
