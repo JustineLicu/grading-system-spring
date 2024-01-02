@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 
-# Update a subject
+# Edit a subject
 # PUT {{host}}/subjects/{{subjectId}}
 PUT {{host}}/subjects/1
 Content-Type: application/json
