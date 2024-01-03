@@ -1,0 +1,54 @@
+@host = http://localhost:8080/api/v1
+
+# `/students` Endpoints
+
+# Get all students
+GET {{host}}/students
+
+###
+
+# Get a student
+# GET {{host}}/students/{{studentId}}
+GET {{host}}/students/1
+
+###
+
+# Create a student profile
+POST {{host}}/students
+Content-Type: application/json
+
+{
+  "studentNumber": "1",
+  "firstName": "Juan",
+  "middleName": "",
+  "lastName": "Dela Cruz",
+  "nameSuffix": "Jr.",
+  "course": "BSIT",
+  "email": "juan.delacruzjr@cvsu.edu.ph",
+  "contactNumber": "09223456789"
+}
+
+###
+
+# Edit a student profile
+# PUT {{host}}/students/{{studentId}}
+PUT {{host}}/students/1
+Content-Type: application/json
+
+{
+  "studentNumber": "1",
+  "firstName": "Juan",
+  "middleName": "",
+  "lastName": "Dela Cruz",
+  "nameSuffix": "Jr.",
+  "course": "BSCS",
+  "email": "juan.delacruzjr@cvsu.edu.ph",
+  "contactNumber": "09223456790"
+}
+
+###
+
+# Delete a student
+# NOTE: Only ADMIN can delete a student
+# DELETE {{host}}/students/{{studentId}}
+DELETE {{host}}/students/1
