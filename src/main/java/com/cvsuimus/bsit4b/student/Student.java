@@ -1,5 +1,7 @@
 package com.cvsuimus.bsit4b.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -8,6 +10,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Entity
 @Table
+@JsonIgnoreProperties({ "hibernateLazyInitializer" })
 public class Student {
 
   @Id

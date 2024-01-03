@@ -1,0 +1,63 @@
+@host = http://localhost:8080/api/v1
+
+# `/grades` Endpoints
+
+# Get all grades in a section
+# GET {{host}}/grades?sectionId={{sectionId}}
+GET {{host}}/grades?sectionId=1
+
+###
+
+# Get all grades of a student
+# GET {{host}}/grades?studentId={{studentId}}
+GET {{host}}/grades?studentId=1
+
+###
+
+# Get all archived grades in a section
+# GET {{host}}/grades/archived?sectionId={{sectionId}}
+GET {{host}}/grades/archived?sectionId=1
+
+###
+
+# Get all archived grades of a student
+# GET {{host}}/grades/archived?studentId={{studentId}}
+GET {{host}}/grades/archived?studentId=1
+
+###
+
+# Get a grade data by ID
+# GET {{host}}/grades/{{gradeId}}
+GET {{host}}/grades/1
+
+###
+
+# Add a grade in a section
+POST {{host}}/grades
+Content-Type: application/json
+
+{
+  "gradeRows": "[]",
+  "attendances": "[]",
+  "sectionId": 1,
+  "studentId": 1
+}
+
+###
+
+# Edit a grade
+# PUT {{host}}/grades/{{gradeId}}
+PUT {{host}}/grades/1
+Content-Type: application/json
+
+{
+  "gradeRows": "[]",
+  "attendances": "[]",
+  "studentId": 1
+}
+
+###
+
+# Archive a grade
+# DELETE {{host}}/grades/{{gradeId}}
+DELETE {{host}}/grades/1
