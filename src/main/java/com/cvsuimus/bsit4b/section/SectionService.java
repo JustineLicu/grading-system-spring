@@ -65,6 +65,13 @@ public class SectionService {
   }
 
   public ResponseEntity<SectionDto.Default> create(Long subjectId, Section item) {
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    Boolean isSubjectCreatable = subjectRepository.findByIdAndUserId(subjectId, user.getId())
+        .isPresent();
+    if (!isSubjectCreatable) {
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
     Boolean sectionExists = sectionRepository.findByCourseAndYearAndNameAndSubjectIdAndDeletedOn(
         item.getCourse(), item.getYear(), item.getName(), subjectId, "").isPresent();
     if (sectionExists) {
@@ -72,7 +79,6 @@ public class SectionService {
     }
 
     Subject subject = subjectRepository.getReferenceById(subjectId);
-    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Section savedItem = sectionRepository.save(item.setSubject(subject).setUser(user));
     return new ResponseEntity<>(
         savedItem.setSubjectId(subjectId).setUserId(user.getId()).toDefaultDto(),
