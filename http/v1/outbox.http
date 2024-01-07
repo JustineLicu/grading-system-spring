@@ -1,0 +1,50 @@
+@host = http://localhost:8080/api/v1
+
+# `/outbox` Endpoints
+
+# Get all outbox emails
+GET {{host}}/outbox
+
+###
+
+# Add/refresh outbox emails per sectionId
+POST {{host}}/outbox
+Content-Type: application/json
+
+{
+  "sectionId": 1,
+  "outbox": [
+    {
+      "emailSubject": "ITEC 116 Grade",
+      "message": "Student John Doe is currently failing the subject ITEC 116 with a GWA of 4.00",
+      "studentId": 51
+    },
+    {
+      "emailSubject": "ITEC 116 Grade",
+      "message": "Student Jane Smith is a candidate for honors in the subject ITEC 116 with a GWA of 1.00",
+      "studentId": 101
+    }
+  ]
+}
+
+###
+
+# Send all outbox emails (All successfully sent outbox emails will be deleted automatically)
+POST {{host}}/outbox/send
+
+###
+
+# Send an outbox email (If successfully sent, it will be deleted automatically)
+# POST {{host}}/outbox/send/{{outboxId}}
+POST {{host}}/outbox/send/1
+
+###
+
+# Delete all outbox emails
+DELETE {{host}}/outbox
+
+###
+
+# Delete an outbox email
+# DELETE {{host}}/outbox/{{outboxId}}
+DELETE {{host}}/outbox/1
