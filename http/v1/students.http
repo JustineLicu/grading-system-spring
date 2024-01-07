@@ -18,14 +18,14 @@ POST {{host}}/students
 Content-Type: application/json
 
 {
-  "studentNumber": "1",
-  "firstName": "Juan",
+  "studentNumber": "2020111",
+  "firstName": "Bob",
   "middleName": "",
-  "lastName": "Dela Cruz",
+  "lastName": "Smith",
   "nameSuffix": "Jr.",
   "course": "BSIT",
-  "email": "juan.delacruzjr@cvsu.edu.ph",
-  "contactNumber": "09223456789"
+  "email": "bob.smithjr@cvsu.edu.ph",
+  "contactNumber": "09223456793"
 }
 
 ###
@@ -36,14 +36,14 @@ PUT {{host}}/students/1
 Content-Type: application/json
 
 {
-  "studentNumber": "1",
-  "firstName": "Juan",
+  "studentNumber": "2020111",
+  "firstName": "Bob",
   "middleName": "",
-  "lastName": "Dela Cruz",
-  "nameSuffix": "Jr.",
+  "lastName": "Smith",
+  "nameSuffix": "II",
   "course": "BSCS",
-  "email": "juan.delacruzjr@cvsu.edu.ph",
-  "contactNumber": "09223456790"
+  "email": "bob.smithjr@cvsu.edu.ph",
+  "contactNumber": "09223456794"
 }
 
 ###
