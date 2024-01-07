@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @PreAuthorize("hasAnyRole('ROLE_INSTRUCTOR', 'ROLE_ADMIN')")
-@RequestMapping("/api/v1/outbox")
+@RequestMapping("/outbox")
 public class OutboxController {
 
   @Autowired

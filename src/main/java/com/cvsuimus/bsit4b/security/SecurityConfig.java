@@ -41,11 +41,11 @@ public class SecurityConfig {
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
-            requests -> requests.requestMatchers("/api/v*/auth/**").permitAll()
+            requests -> requests.requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated())
-        .formLogin(login -> login.loginProcessingUrl("/api/v1/auth/login")
+        .formLogin(login -> login.loginProcessingUrl("/auth/login")
             .defaultSuccessUrl(frontendUrl).failureUrl(frontendUrl + "/?error"))
-        .logout(logout -> logout.logoutUrl("/api/v1/auth/logout"))
+        .logout(logout -> logout.logoutUrl("/auth/logout"))
         .exceptionHandling(handling -> handling.authenticationEntryPoint(
             (request, response, authException) -> response.sendError(401)));
 

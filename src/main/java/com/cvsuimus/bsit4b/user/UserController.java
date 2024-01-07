@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 public class UserController {
 
   @Autowired

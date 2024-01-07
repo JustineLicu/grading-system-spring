@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @PreAuthorize("hasAnyRole('ROLE_INSTRUCTOR', 'ROLE_ADMIN')")
-@RequestMapping("/api/v1/grades")
+@RequestMapping("/grades")
 public class GradeController {
 
   @Autowired
