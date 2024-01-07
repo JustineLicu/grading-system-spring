@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.cvsuimus.bsit4b.utility.MainUtility;
@@ -50,6 +51,12 @@ public class UserService {
   }
 
   public ResponseEntity<HttpStatus> updateRole(Long id, User item) {
+    Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
+        .getId();
+    if (userId == id) {
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
     Optional<User> existingItemOptional = userRepository.findById(id);
     if (existingItemOptional.isPresent()) {
       User existingItem = existingItemOptional.get();
@@ -62,6 +69,12 @@ public class UserService {
   }
 
   public ResponseEntity<HttpStatus> delete(Long id) {
+    Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
+        .getId();
+    if (userId == id) {
+      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
     try {
       userRepository.setDeletedOnFor(MainUtility.getCurrentDateTimeInString(), id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);

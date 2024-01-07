@@ -21,7 +21,7 @@ GET {{host}}/users/1
 
 # Change role of a user
 # PUT {{host}}/users/{{userId}}/role
-PUT {{host}}/users/1/role
+PUT {{host}}/users/2/role
 Content-Type: application/json
 
 {
@@ -32,4 +32,4 @@ Content-Type: application/json
 
 # Archive a user
 # DELETE {{host}}/users/{{userId}}
-DELETE {{host}}/users/1
+DELETE {{host}}/users/2
