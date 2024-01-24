@@ -16,5 +16,8 @@ Spring Boot 3 requires `Java 17`. If your version is different, you can download
 ./mvnw spring-boot:run
 ```
 
-**Step 2:** That's it! You can now test the API endpoints using the `.http` files in the `http/v1`
+**Step 2 (Optional):** Configure the `spring.mail.*` in the
+`src/main/resources/application.properties` file for email sending.
+
+**Step 3:** That's it! You can now test the API endpoints using the `.http` files in the `http/v1`
 folder, or by using Postman.
