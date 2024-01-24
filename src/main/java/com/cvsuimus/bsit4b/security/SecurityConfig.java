@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,8 +31,9 @@ public class SecurityConfig {
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Arrays.asList(frontendUrl));
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-    // configuration.setAllowCredentials(true);
+    configuration.setAllowedMethods(
+        Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
+    configuration.setAllowCredentials(true);
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
@@ -39,12 +41,14 @@ public class SecurityConfig {
 
   @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(csrf -> csrf.disable())
+    http.cors(Customizer.withDefaults())
+        .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
             requests -> requests.requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated())
         .formLogin(login -> login.loginProcessingUrl("/auth/login")
-            .defaultSuccessUrl(frontendUrl).failureUrl(frontendUrl + "/?error"))
+            .successHandler((request, response, authentication) -> response.setStatus(200))
+            .failureHandler((request, response, exception) -> response.sendError(401)))
         .logout(logout -> logout.logoutUrl("/auth/logout"))
         .exceptionHandling(handling -> handling.authenticationEntryPoint(
             (request, response, authException) -> response.sendError(401)));
