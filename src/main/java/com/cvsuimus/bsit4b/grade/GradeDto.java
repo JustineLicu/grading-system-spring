@@ -1,5 +1,7 @@
 package com.cvsuimus.bsit4b.grade;
 
+import java.util.List;
+
 import com.cvsuimus.bsit4b.section.SectionDto;
 import com.cvsuimus.bsit4b.student.Student;
 
@@ -50,6 +52,10 @@ public class GradeDto {
       Long studentId,
       Student student,
       Long userId) {
+
+  }
+
+  public static record UpdateMany(List<Grade> grades) {
 
   }
 }

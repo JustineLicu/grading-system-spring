@@ -58,6 +58,30 @@ Content-Type: application/json
 
 ###
 
+# Edit many grades
+# PUT {{host}}/grades
+PUT {{host}}/grades
+Content-Type: application/json
+
+{
+  "grades": [
+    {
+      "id": 1,
+      "gradeRows": "[]",
+      "attendances": "[]",
+      "studentId": 1
+    },
+    {
+      "id": 2,
+      "gradeRows": "[]",
+      "attendances": "[]",
+      "studentId": 51
+    }
+  ]
+}
+
+###
+
 # Archive a grade
 # DELETE {{host}}/grades/{{gradeId}}
 DELETE {{host}}/grades/1

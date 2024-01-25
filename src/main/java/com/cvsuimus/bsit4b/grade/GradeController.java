@@ -43,6 +43,11 @@ public class GradeController {
     return gradeService.update(id, item);
   }
 
+  @PutMapping
+  public ResponseEntity<HttpStatus> updateMany(@RequestBody GradeDto.UpdateMany items) {
+    return gradeService.updateMany(items);
+  }
+
   @DeleteMapping("{id}")
   public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
     return gradeService.delete(id);

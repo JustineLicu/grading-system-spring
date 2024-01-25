@@ -172,6 +172,11 @@ public class GradeService {
     }
   }
 
+  public ResponseEntity<HttpStatus> updateMany(GradeDto.UpdateMany items) {
+    items.grades().forEach(item -> update(item.getId(), item));
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
   public ResponseEntity<HttpStatus> delete(Long id) {
     Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
         .getId();
