@@ -24,7 +24,21 @@ Content-Type: application/json
 
 {
   "code": "ITEC 116",
-  "description": "Lorem ipsum dolor."
+  "description": "Lorem ipsum dolor.",
+  "sections": [
+    {
+      "course": "BSIT",
+      "year": 4,
+      "name": "B",
+      "gradeColumns": "[]"
+    },
+    {
+      "course": "BSCS",
+      "year": 2,
+      "name": "A",
+      "gradeColumns": "[]"
+    }
+  ]
 }
 
 ###

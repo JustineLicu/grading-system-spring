@@ -1,5 +1,8 @@
 package com.cvsuimus.bsit4b.subject;
 
+import java.util.*;
+
+import com.cvsuimus.bsit4b.section.Section;
 import com.cvsuimus.bsit4b.user.User;
 
 import jakarta.persistence.*;
@@ -23,6 +26,9 @@ public class Subject {
 
   @Column(nullable = false)
   private String description;
+
+  @Transient
+  private List<Section> sections = new ArrayList<Section>();
 
   @Column(name = "deleted_on", nullable = false)
   private String deletedOn = "";

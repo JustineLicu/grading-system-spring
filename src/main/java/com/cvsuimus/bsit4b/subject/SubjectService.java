@@ -7,14 +7,20 @@ import org.springframework.http.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.cvsuimus.bsit4b.section.*;
 import com.cvsuimus.bsit4b.user.User;
 import com.cvsuimus.bsit4b.utility.MainUtility;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class SubjectService {
 
   @Autowired
   private SubjectRepository subjectRepository;
+
+  @Autowired
+  private SectionRepository sectionRepository;
 
   public ResponseEntity<List<SubjectDto.Default>> getAll() {
     Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
@@ -60,6 +66,7 @@ public class SubjectService {
     }
   }
 
+  @Transactional
   public ResponseEntity<SubjectDto.Default> create(Subject item) {
     User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -70,6 +77,12 @@ public class SubjectService {
     }
 
     Subject savedItem = subjectRepository.save(item.setUser(user));
+    List<Section> sections = new ArrayList<Section>();
+
+    item.getSections().forEach(section -> sections.add(
+        section.setSubject(savedItem).setUser(user)));
+
+    sectionRepository.saveAll(sections);
     return new ResponseEntity<>(
         savedItem.setUserId(user.getId()).toDefaultDto(), HttpStatus.CREATED);
   }
