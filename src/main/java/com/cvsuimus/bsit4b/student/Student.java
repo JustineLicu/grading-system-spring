@@ -32,8 +32,8 @@ public class Student {
   @Column(nullable = false)
   private String nameSuffix = "";
 
-  @Column(nullable = false, unique = true)
-  private String email;
+  @Column(nullable = false)
+  private String email = "";
 
   @Column(nullable = false)
   private String contactNumber = "";

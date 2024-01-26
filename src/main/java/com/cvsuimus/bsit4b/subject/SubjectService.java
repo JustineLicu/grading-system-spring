@@ -7,7 +7,9 @@ import org.springframework.http.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.cvsuimus.bsit4b.grade.*;
 import com.cvsuimus.bsit4b.section.*;
+import com.cvsuimus.bsit4b.student.*;
 import com.cvsuimus.bsit4b.user.User;
 import com.cvsuimus.bsit4b.utility.MainUtility;
 
@@ -21,6 +23,12 @@ public class SubjectService {
 
   @Autowired
   private SectionRepository sectionRepository;
+
+  @Autowired
+  private StudentRepository studentRepository;
+
+  @Autowired
+  private GradeRepository gradeRepository;
 
   public ResponseEntity<List<SubjectDto.Default>> getAll() {
     Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
@@ -77,12 +85,38 @@ public class SubjectService {
     }
 
     Subject savedItem = subjectRepository.save(item.setUser(user));
-    List<Section> sections = new ArrayList<Section>();
 
-    item.getSections().forEach(section -> sections.add(
-        section.setSubject(savedItem).setUser(user)));
+    item.getSections().forEach(unmappedSection -> {
+      Section section = sectionRepository.save(unmappedSection.setSubject(savedItem).setUser(user));
+      List<Student> students = unmappedSection.getStudents();
 
-    sectionRepository.saveAll(sections);
+      if (students.size() > 0) {
+        List<String> studentNumbers = new ArrayList<String>();
+        students.forEach(student -> studentNumbers.add(student.getStudentNumber()));
+
+        List<Student> existingStudents = studentRepository.findByStudentNumberIn(studentNumbers);
+
+        if (students.size() != existingStudents.size()) {
+          List<Student> studentsToCreate = new ArrayList<Student>(students);
+
+          studentsToCreate.removeIf(student -> {
+            Boolean isStudentNew = existingStudents.stream()
+                .noneMatch(existingStudent -> existingStudent.getStudentNumber()
+                    .equals(student.getStudentNumber()));
+            return !isStudentNew;
+          });
+
+          List<Student> newStudents = studentRepository.saveAll(studentsToCreate);
+
+          newStudents.forEach(student -> gradeRepository.save(
+              new Grade().setSection(section).setStudent(student).setUser(user)));
+        }
+
+        existingStudents.forEach(student -> gradeRepository.save(
+            new Grade().setSection(section).setStudent(student).setUser(user)));
+      }
+    });
+
     return new ResponseEntity<>(
         savedItem.setUserId(user.getId()).toDefaultDto(), HttpStatus.CREATED);
   }

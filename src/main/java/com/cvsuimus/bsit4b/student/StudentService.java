@@ -41,10 +41,11 @@ public class StudentService {
       throw new IllegalStateException("Student Number is already registered");
     }
 
-    Boolean emailExists = studentRepository.findByEmail(item.getEmail()).isPresent();
-    if (emailExists) {
-      throw new IllegalStateException("Email is already taken");
-    }
+    // Boolean emailExists =
+    // studentRepository.findByEmail(item.getEmail()).isPresent();
+    // if (emailExists) {
+    // throw new IllegalStateException("Email is already taken");
+    // }
 
     Student savedItem = studentRepository.save(item);
     return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
@@ -68,12 +69,13 @@ public class StudentService {
       }
 
       if (item.getEmail() != null && !existingItem.getEmail().equals(item.getEmail())) {
-        Boolean emailExists = studentRepository.findByEmail(item.getEmail()).isPresent();
-        if (emailExists) {
-          throw new IllegalStateException("Email is already taken");
-        } else {
-          existingItem.setEmail(item.getEmail());
-        }
+        // Boolean emailExists =
+        // studentRepository.findByEmail(item.getEmail()).isPresent();
+        // if (emailExists) {
+        // throw new IllegalStateException("Email is already taken");
+        // } else {
+        existingItem.setEmail(item.getEmail());
+        // }
       }
 
       if (item.getFirstName() != null) {

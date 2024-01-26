@@ -30,13 +30,38 @@ Content-Type: application/json
       "course": "BSIT",
       "year": 4,
       "name": "B",
-      "gradeColumns": "[]"
+      "gradeColumns": "[]",
+      "students": [
+        {
+          "studentNumber": "2020111",
+          "firstName": "Bob",
+          "middleName": "",
+          "lastName": "Smith",
+          "nameSuffix": "Jr.",
+          "course": "BSIT",
+          "email": "bob.smithjr@cvsu.edu.ph",
+          "contactNumber": "09223456793"
+        },
+        {
+          "studentNumber": "2020112",
+          "firstName": "James",
+          "middleName": "",
+          "lastName": "Dumb",
+          "nameSuffix": "II",
+          "course": "BSCS",
+          "email": "james.dumbii@cvsu.edu.ph",
+          "contactNumber": "09223456794"
+        }
+      ]
     },
     {
       "course": "BSCS",
       "year": 2,
       "name": "A",
-      "gradeColumns": "[]"
+      "gradeColumns": "[]",
+      "students": [
+
+      ]
     }
   ]
 }

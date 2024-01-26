@@ -1,5 +1,8 @@
 package com.cvsuimus.bsit4b.section;
 
+import java.util.*;
+
+import com.cvsuimus.bsit4b.student.Student;
 import com.cvsuimus.bsit4b.subject.Subject;
 import com.cvsuimus.bsit4b.user.User;
 
@@ -32,6 +35,9 @@ public class Section {
   @Column(nullable = false)
   @Lob
   private String gradeColumns = "[]";
+
+  @Transient
+  private List<Student> students = new ArrayList<Student>();
 
   @Column(name = "deleted_on", nullable = false)
   private String deletedOn = "";
